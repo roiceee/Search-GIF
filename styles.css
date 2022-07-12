@@ -1,7 +1,5 @@
 
 body {
-    width: 100vw;
-    height: 100vh;
     background: rgb(114, 0, 114);
     background-repeat: no-repeat;
     background-size: cover;
@@ -19,7 +17,7 @@ img {
 }
 
 .img-container {
-    max-width: 800px;
+    max-width: 500px;
     height: auto;
     width: 80%;
 }
@@ -47,6 +45,9 @@ form {
     max-width: 600px;
 }
 
+#img-div {
+    margin-top: 20vh;
+}
 @media only screen and (min-width: 425px){
     #refresh-button:hover {
         background-color: rgb(233, 175, 3);
