@@ -32,7 +32,7 @@ async function fetchGifLink(word) {
         return {url, title};
     } catch (error) {
 
-        showAlert("Please try again or reload the page.");
+        showAlert("Please try again or reload the page");
     }
 }
 

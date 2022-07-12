@@ -9,21 +9,24 @@ body {
     border-radius: 20px;
 }
 
+.title {
+    height: 15vh;
+}
+
 img {
-    height: 100%;
-    width: 100%;
-    max-height: 300px;
-    
+    max-height: 350px;
+    max-width: 90%;
 }
 
 .img-container {
     max-width: 500px;
-    height: auto;
+    height: 50vh;
     width: 80%;
 }
 
-form {
+.form-div {
     max-width: 400px!important;
+    height: 20vh;
 }
 
 #refresh-button {
@@ -45,9 +48,6 @@ form {
     max-width: 600px;
 }
 
-#img-div {
-    margin-top: 20vh;
-}
 @media only screen and (min-width: 425px){
     #refresh-button:hover {
         background-color: rgb(233, 175, 3);
