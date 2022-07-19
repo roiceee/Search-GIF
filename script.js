@@ -1,5 +1,5 @@
 import showAlert from "./alert.js";
-
+import {createSpinner, removeSpinner} from './spinner.js';
 
 const GIFController = (() => {
     const defaultKeyWord = ["cat", "dog", "mouse", "rabbit", "giraffe", "sheep", "goat", "goose", "duck", "bonk"];
@@ -45,18 +45,19 @@ function getData(JSON) {
 }
 
 async function pickRandomGIF() {
+    await refreshImageHolder();
     const {url, title} = await fetchGifLink(GIFController.pickDefaultKeyWord());
     displayGIF(url, title);
 }
 
 async function reloadCurrentWord() {
-    removeGifLink();
+    await refreshImageHolder();
     const {url, title} = await fetchGifLink(GIFController.getCurrentWord());
     displayGIF(url, title);
 }
 
 async function searchGIF() {
-    removeGifLink();
+    await refreshImageHolder();
     const value = getFormInput();
     GIFController.setCurrentWord(value);
     if (value === "") {
@@ -75,17 +76,34 @@ function getFormInput() {
 }
 
 function displayGIF(imageURL, title) {
+    removeSpinner();
+    showImage();
     const image = document.querySelector('img');
     const titleContainer = document.getElementById('title');
     image.setAttribute('src', imageURL);
     titleContainer.textContent = title;       
 }
 
-function removeGifLink() {
-    const image = document.querySelector('img');
-    image.setAttribute('src', "#");
+async function refreshImageHolder() {
+    hideImage();
+    await loadSpinner();
     const titleContainer = document.getElementById('title');
     titleContainer.textContent = "";
+}
+
+function hideImage() {
+    const image = document.querySelector('img');
+    image.style.display = "none";
+}
+
+function showImage() {
+    const image = document.querySelector('img');
+    image.style.display = "inline-block";
+}
+
+async function loadSpinner() {
+    const container = document.querySelector('.img-container');
+    container.append(await createSpinner());
 }
 
 function addEventListeners() {
